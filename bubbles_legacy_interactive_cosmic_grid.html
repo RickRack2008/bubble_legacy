@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bubbles Legacy – Carte Cosmique</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('Sans titre (3000 x 3000 px).png') center/contain no-repeat;
+  }
+  .bubble {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .popup {
+    position: absolute;
+    background: rgba(10,10,30,0.95);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+    width: 200px;
+    text-align: center;
+    font-family: sans-serif;
+    z-index: 10;
+    border: 1px solid gold;
+  }
+  .popup h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Planètes (coordonnées ajustées à l’œil sur image 2048x2048) -->
+  <div class="bubble" style="top: 660px; left: 480px;" onclick="showPopup('popup-astrale')"></div>
+  <div class="bubble" style="top: 1600px; left: 280px;" onclick="showPopup('popup-nova')"></div>
+  <div class="bubble" style="top: 1460px; left: 1640px;" onclick="showPopup('popup-influenceur')"></div>
+  <div class="bubble" style="top: 1040px; left: 1760px;" onclick="showPopup('popup-entreprise')"></div>
+  <div class="bubble" style="top: 640px; left: 1160px;" onclick="showPopup('popup-celeste')"></div>
+
+  <!-- Popups -->
+  <div class="popup" id="popup-astrale" style="top: 660px; left: 520px;">
+    <h3>Bulle Astrale</h3>
+    Une bulle intuitive, mystérieuse et sensible.
+  </div>
+  <div class="popup" id="popup-nova" style="top: 1600px; left: 320px;">
+    <h3>Bulle Nova</h3>
+    Une énergie créative explosive, pionnière du cosmos.
+  </div>
+  <div class="popup" id="popup-influenceur" style="top: 1460px; left: 1680px;">
+    <h3>Bulle Influenceur</h3>
+    Visibilité, inspiration et puissance virale.
+  </div>
+  <div class="popup" id="popup-entreprise" style="top: 1040px; left: 1800px;">
+    <h3>Bulle Entreprise</h3>
+    Positionnement stratégique dans l’univers Bubbles.
+  </div>
+  <div class="popup" id="popup-celeste" style="top: 640px; left: 1200px;">
+    <h3>Bulle Céleste</h3>
+    Harmonie, rêve, et dimension supérieure.
+  </div>
+</div>
+<script>
+function showPopup(id) {
+  document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  setTimeout(() => {
+    document.getElementById(id).style.display = 'none';
+  }, 4000);
+}
+</script>
+</body>
+</html>

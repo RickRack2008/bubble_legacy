@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>Roadmap Zoomable – Centrage Direct Image</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    #viewport {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      touch-action: none;
+      position: relative;
+    }
+
+    #roadmapImg {
+      width: 1600px;
+      height: 1920px;
+      max-width: none;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+      transform-origin: 0 0;
+      will-change: transform;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #nebulaCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport">
+    <canvas id="nebulaCanvas"></canvas>
+    <img id="roadmapImg" src="Roadmap_1600x1920.png" alt="Roadmap stratégique Bubbles Legacy" />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
+  <script>
+    const img = document.getElementById('roadmapImg');
+    const pan = panzoom(img, {
+      maxZoom: 5,
+      minZoom: 0.25,
+      zoomSpeed: 0.065,
+    });
+
+    function centerImage() {
+      requestAnimationFrame(() => {
+        const isMobile = window.innerWidth < 768;
+        const zoom = isMobile ? 0.27 : 0.5;
+
+        pan.zoomAbs(0, 0, zoom);
+
+        const dx = (window.innerWidth / 2) - (1600 * zoom / 2);
+        const dy = 0;
+
+        pan.moveTo(dx, dy);
+      });
+    }
+
+    window.addEventListener('load', () => {
+      if (img.complete) centerImage();
+      else img.onload = centerImage;
+    });
+
+    document.getElementById('viewport').addEventListener('wheel', function (e) {
+      if (!e.ctrlKey) {
+        e.preventDefault();
+        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        pan.zoomTo(x, y, zoomFactor);
+      }
+    }, { passive: false });
+  </script>
+
+  <script>
+    const canvas = document.getElementById("nebulaCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const halos = Array.from({length: 20}).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: 100 + Math.random() * 150,
+      opacity: 0.05 + Math.random() * 0.1,
+      dx: (Math.random() - 0.5) * 0.2,
+      dy: (Math.random() - 0.5) * 0.2
+    }));
+
+    function drawHalos() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const h of halos) {
+        const gradient = ctx.createRadialGradient(h.x, h.y, 0, h.x, h.y, h.radius);
+        gradient.addColorStop(0, `rgba(100, 100, 255, ${h.opacity})`);
+        gradient.addColorStop(1, `rgba(0, 0, 0, 0)`);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(h.x, h.y, h.radius, 0, 2 * Math.PI);
+        ctx.fill();
+
+        h.x += h.dx;
+        h.y += h.dy;
+
+        if (h.x < -h.radius || h.x > width + h.radius) h.dx *= -1;
+        if (h.y < -h.radius || h.y > height + h.radius) h.dy *= -1;
+      }
+
+      requestAnimationFrame(drawHalos);
+    }
+
+    drawHalos();
+  </script>
+</body>
+</html>

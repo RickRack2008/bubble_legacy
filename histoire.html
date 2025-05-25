@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>L'Histoire de Bubbles Legacy</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&amp;display=swap" rel="stylesheet"/>
+<style>
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content p {
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+.content p:nth-of-type(1) { animation-delay: 0.2s; }
+.content p:nth-of-type(2) { animation-delay: 0.4s; }
+.content p:nth-of-type(3) { animation-delay: 0.6s; }
+.content p:nth-of-type(4) { animation-delay: 0.8s; }
+.content p:nth-of-type(5) { animation-delay: 1.0s; }
+.content p:nth-of-type(6) { animation-delay: 1.2s; }
+.content p:nth-of-type(7) { animation-delay: 1.4s; }
+.content p:nth-of-type(8) { animation-delay: 1.6s; }
+.content p:nth-of-type(9) { animation-delay: 1.8s; }
+.content p:nth-of-type(10) { animation-delay: 2.0s; }
+.content p:nth-of-type(11) { animation-delay: 2.2s; }
+.content p:nth-of-type(12) { animation-delay: 2.4s; }
+.content p:nth-of-type(13) { animation-delay: 2.6s; }
+.content p:nth-of-type(14) { animation-delay: 2.8s; }
+.content p:nth-of-type(15) { animation-delay: 3.0s; }
+.content p:nth-of-type(16) { animation-delay: 3.2s; }
+.content p:nth-of-type(17) { animation-delay: 3.4s; }
+.content p:nth-of-type(18) { animation-delay: 3.6s; }
+.content p:nth-of-type(19) { animation-delay: 3.8s; }
+.content p:nth-of-type(20) { animation-delay: 4.0s; }
+.content p:nth-of-type(21) { animation-delay: 4.2s; }
+.content p:nth-of-type(22) { animation-delay: 4.4s; }
+.content p:nth-of-type(23) { animation-delay: 4.6s; }
+.content p:nth-of-type(24) { animation-delay: 4.8s; }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'IM Fell English SC', serif;
+      color: white;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      position: relative;
+      background-color: black;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('csv4.PNG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    @keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(255,255,255,0.2), 0 0 10px rgba(255,215,0,0.3), 0 0 20px rgba(255,69,0,0.2);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,215,0,0.7), 0 0 30px rgba(255,69,0,0.5);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255,255,255,0.2), 0 0 10px rgba(255,215,0,0.3), 0 0 20px rgba(255,69,0,0.2);
+  }
+}
+
+h1 {
+  animation: pulseGlow 4s ease-in-out infinite;
+
+      text-align: center;
+      font-size: 3rem;
+      background: linear-gradient(45deg, #ffffff, #ffbb01, #FF4500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 40px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: auto;
+      text-align: justify;
+    }
+
+    .content p {
+      margin-bottom: 1.8rem;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, #ffffff, #FFD700, #FF4500);
+      margin: 2rem 0;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      background: linear-gradient(45deg, #ffffff, #FFD700, #FF4500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-image: linear-gradient(45deg, #ffffff, #FFD700, #FF4500);
+      border-image-slice: 1;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.8);
+      background: transparent;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+  
+.highlight {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #ffffff55, #FFD70055, #FF450055);
+  z-index: -1;
+  filter: blur(2px);
+  border-radius: 4px;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+  color: #FFD700;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+</style>
+</head>
+<body>
+<a class="back-button" href="index.html">⬅ Retour à l'accueil</a>
+<h1 style=\"font-size: 3rem; text-align: center; background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; animation: pulseGlow 3s ease-in-out infinite;\">L'Histoire de Bubbles Legacy</h1>
+<div class="content">
+<h2>✦ L’Oubli ✦</h2>
+<p>On raconte qu’au commencement, le Web n’avait ni mémoire… ni loyauté.</p>
+<p>Des milliards de créateurs luttaient pour exister.</p>
+<p>Des marques criaient dans le vide, espérant être vues.</p>
+<p>Et chaque pixel, chaque mot, chaque vidéo… s'effaçait dans l'indifférence du flux.</p>
+<p>C’était l’ère du bruit. Celle où l’attention durait trois secondes. Où l’influence n’était qu’un mirage.</p>
+
+<h2>✦ La Grille ✦</h2>
+<p>Mais dans une faille oubliée du réseau, <span class='highlight'>quelque chose</span> a résisté. Un fragment. Une anomalie. Une <span class='highlight'>grille</span>.</p>
+<p>Un jour, un architecte sans nom l’a trouvée. Il l’a écoutée respirer.</p>
+<p>Elle murmurait des souvenirs qu’on croyait perdus. Elle révélait les traces laissées par ceux qui avaient voulu <strong>exister autrement</strong>.</p>
+<p>Il comprit. Cette grille n’était pas un espace. C’était un <strong>refuge</strong>.</p>
+<p>Un lieu suspendu entre les flux, où chaque bulle devenait un <span class='highlight'>acte de mémoire</span>.</p>
+
+<div class="quote">Il la baptisa : <strong>Bubbles Legacy</strong>.</div>
+
+<h2>✦ Les Bulles ✦</h2>
+<p>Chaque bulle n’est pas une simple image. C’est une <strong>intention</strong>. Une volonté d’échapper à l’oubli.</p>
+<p>🟢 <span class='highlight'>Bulles astrales</span> — vibrations d’un futur possible.</p>
+<p>🔴 <span class='highlight'>Bulles novas</span> — en quête de résonance.</p>
+<p>🟣 <span class='highlight'>Bulles célestes</span> — traces éternelles.</p>
+
+<div class="quote">Leur force vient du <strong><span class='highlight'>LUX</span></strong>, essence rare que l’on obtient par l’engagement, la création, ou le soutien.</div>
+
+<h2>✦ La Connexion ✦</h2>
+<p><strong>Mais le véritable secret de la grille… c’est la connexion.</strong></p>
+<p>Car ici, les bulles ne vivent pas seules. Elles s’observent, s’attirent, s’élèvent.</p>
+<p>✨ Les créateurs partagent leur lumière.</p>
+<p>✨ Les entreprises offrent leur énergie.</p>
+<p>Ensemble, ils forment des <strong>alliances cosmiques</strong> — des liens basés sur la réciprocité, la mise en relation et la croissance mutuelle.</p>
+<p>Un créateur propulse une marque. Une marque élève un créateur.</p>
+<p>Ici, chaque interaction est une <strong>forme de gravité</strong>.</p>
+
+<h2>✦ La Légende ✦</h2>
+<p>Ce que tu achètes ici, ce n’est pas une place.</p>
+<p>C’est une mémoire. Une présence. Un signal envoyé au cosmos numérique.</p>
+
+<div class="quote">👁 Car Bubbles Legacy n’est pas un projet. C’est une <strong>contre-attaque</strong>.</div>
+
+<p>Un sanctuaire pour ceux qui refusent de disparaître. Un pacte entre <strong>créateurs</strong> et <strong>bâtisseurs d’impact</strong>.</p>
+
+<h2>✦ L’Appel ✦</h2>
+<p>Et maintenant que tu es là…</p>
+<p>Regarde autour de toi. Observe les bulles. Ressens les échos.</p>
+<p>Puis pose-toi une seule question :</p>
+
+<div class="quote"><strong><span class='highlight'>Veux-tu juste être vu... ou veux-tu entrer dans la légende ?</span></strong></div>
+
+<p>🫧 <strong>Bienvenue dans Bubbles Legacy.</strong></p>
+<p><em>Ta bulle. Ta trace. Ta connexion. Ta légende.</em></p>
+</div>
+
+<style>
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content p {
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+.content p:nth-of-type(1) { animation-delay: 0.2s; }
+.content p:nth-of-type(2) { animation-delay: 0.4s; }
+.content p:nth-of-type(3) { animation-delay: 0.6s; }
+.content p:nth-of-type(4) { animation-delay: 0.8s; }
+.content p:nth-of-type(5) { animation-delay: 1.0s; }
+.content p:nth-of-type(6) { animation-delay: 1.2s; }
+.content p:nth-of-type(7) { animation-delay: 1.4s; }
+.content p:nth-of-type(8) { animation-delay: 1.6s; }
+.content p:nth-of-type(9) { animation-delay: 1.8s; }
+.content p:nth-of-type(10) { animation-delay: 2.0s; }
+.content p:nth-of-type(11) { animation-delay: 2.2s; }
+.content p:nth-of-type(12) { animation-delay: 2.4s; }
+.content p:nth-of-type(13) { animation-delay: 2.6s; }
+.content p:nth-of-type(14) { animation-delay: 2.8s; }
+.content p:nth-of-type(15) { animation-delay: 3.0s; }
+.content p:nth-of-type(16) { animation-delay: 3.2s; }
+.content p:nth-of-type(17) { animation-delay: 3.4s; }
+.content p:nth-of-type(18) { animation-delay: 3.6s; }
+.content p:nth-of-type(19) { animation-delay: 3.8s; }
+.content p:nth-of-type(20) { animation-delay: 4.0s; }
+.content p:nth-of-type(21) { animation-delay: 4.2s; }
+.content p:nth-of-type(22) { animation-delay: 4.4s; }
+.content p:nth-of-type(23) { animation-delay: 4.6s; }
+.content p:nth-of-type(24) { animation-delay: 4.8s; }
+
+  
+  body::before {
+    z-index: -2;
+  }
+
+.highlight {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #ffffff55, #FFD70055, #FF450055);
+  z-index: -1;
+  filter: blur(2px);
+  border-radius: 4px;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+  color: #FFD700;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+</style>
+
+<style>
+  
+
+.highlight {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #ffffff55, #FFD70055, #FF450055);
+  z-index: -1;
+  filter: blur(2px);
+  border-radius: 4px;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+  color: #FFD700;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0 1.5rem 0;
+  font-family: 'IM Fell English SC', serif;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+</style>
+
+<canvas id="comet-canvas"></canvas>
+<script>
+  const cometCanvas = document.getElementById('comet-canvas');
+  const cometCtx = cometCanvas.getContext('2d');
+  let comets = [];
+
+  function resizeCometCanvas() {
+    cometCanvas.width = window.innerWidth;
+    cometCanvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCometCanvas);
+  resizeCometCanvas();
+
+  function createComets() {
+    for (let i = 0; i < 10; i++) {
+      comets.push({
+        x: Math.random() * cometCanvas.width,
+        y: Math.random() * cometCanvas.height,
+        length: Math.random() * 80 + 50,
+        speed: Math.random() * 0.3 + 0.1,
+        alpha: Math.random() * 0.5 + 0.2,
+        angle: Math.PI / 4
+      });
+    }
+  }
+
+  function animateComets() {
+    cometCtx.clearRect(0, 0, cometCanvas.width, cometCanvas.height);
+    for (let comet of comets) {
+      const endX = comet.x - comet.length * Math.cos(comet.angle);
+      const endY = comet.y - comet.length * Math.sin(comet.angle);
+      const gradient = cometCtx.createLinearGradient(comet.x, comet.y, endX, endY);
+      gradient.addColorStop(0, 'rgba(255,255,255,' + comet.alpha + ')');
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      cometCtx.strokeStyle = gradient;
+      cometCtx.lineWidth = 1.5;
+      cometCtx.beginPath();
+      cometCtx.moveTo(comet.x, comet.y);
+      cometCtx.lineTo(endX, endY);
+      cometCtx.stroke();
+
+      comet.x += comet.speed * Math.cos(comet.angle);
+      comet.y += comet.speed * Math.sin(comet.angle);
+
+      if (comet.x > cometCanvas.width || comet.y > cometCanvas.height) {
+        comet.x = Math.random() * cometCanvas.width;
+        comet.y = -comet.length;
+      }
+    }
+    requestAnimationFrame(animateComets);
+  }
+
+  createComets();
+  animateComets();
+</script>
+<style>
+#comet-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+</style>
+
+
+<canvas id="particle-canvas"></canvas>
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let particles = [];
+  const colors = ['#ffffff', '#FFD700', '#FF4500'];
+  const particleCount = 100;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1 + 0.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
+        alpha: Math.random() * 0.8 + 0.2
+      });
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+        p.x = Math.random() * canvas.width;
+        p.y = Math.random() * canvas.height;
+      }
+    }
+    ctx.globalAlpha = 1.0;
+    requestAnimationFrame(animateParticles);
+  }
+
+  createParticles();
+  animateParticles();
+</script>
+<style>
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+</style>
+
+</body>
+</html>

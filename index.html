@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bubbles Legacy</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Bouton Nova : rouge → orange */
+.popup-container.nova .reserve-btn {
+  background: linear-gradient(135deg, #dc2626, #f97316) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.nova .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+}
+
+/* Bouton Astrale : bleu foncé → bleu clair */
+.popup-container.astrale .reserve-btn {
+  background: linear-gradient(135deg, #1e3a8a, #60a5fa) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.astrale .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+}
+/* Bouton Cosmic Precise Gradient (bulle matching) */
+.reserve-btn {
+  background: linear-gradient(135deg, #9333ea, #9517fb, #3517fa, #059df6) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #8104f6, 0 0 40px #060afa, 0 0 60px #06b6d4;
+}
+/* Apparition douce */
+@keyframes popupFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-container {
+  animation: popupFadeIn 0.5s ease-out;
+  position: relative;
+  width: min(90vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centrage parfait dans la bulle */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  font-family: 'IM Fell English SC', serif;
+}
+
+/* Auras selon type */
+.popup-container.astrale .popup-image {
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+}
+.popup-container.nova .popup-image {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+}
+.popup-container.celeste .popup-image {
+  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+}
+
+/* Bouton fermer visible et responsive */
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 4px 10px;
+}
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .bubble {
+      width: 320px;
+      height: auto;
+      margin-top: 40px;
+      animation: pulseGlow 2.5s ease-in-out infinite,
+                 dimensionalPulse 4s ease-in-out infinite;
+      transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+
+    .slogan {
+      font-family: 'IM Fell English SC', serif;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .slogan span {
+      opacity: 0;
+      animation: fadeInMagic 1s ease forwards;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+
+    .slogan span:nth-child(1) { animation-delay: 0s; }
+    .slogan span:nth-child(2) { animation-delay: 0.6s; }
+    .slogan span:nth-child(3) { animation-delay: 1.2s; }
+    .slogan span:nth-child(4) { animation-delay: 1.8s; }
+    .slogan span:nth-child(5) { animation-delay: 2.4s; }
+    .slogan span:nth-child(6) { animation-delay: 3s; }
+
+    @keyframes fadeInMagic {
+      from { opacity: 0; transform: translateY(10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 90%;
+      margin-bottom: 40px;
+    }
+
+    .cta img {
+      width: 220px;
+      height: auto;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .cta img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 8px #ffde82);
+    }
+
+    .bubble-options {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .bubble-choice img {
+      width: 100px;
+      height: auto;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .bubble-choice img:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 12px #9705db);
+    }
+
+    .bubble-name {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .bubble-price {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .bubble-name-sacred {
+      font-family: 'IM Fell English SC', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px #ff3700 ); }
+      50% { filter: drop-shadow(0 0 20px #ff3c00 ); }
+    }
+
+    @keyframes dimensionalPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      top: 0;
+      left: 0;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    #bg-video {
+      opacity: 0.3;
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    @media screen and (max-width: 480px) {
+      .bubble {
+        width: 280px;
+      }
+
+      .slogan {
+        font-size: 1.5rem;
+      }
+
+      .cta img {
+        width: 200px;
+      }
+
+      .description {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+    }
+
+  .cosmic-frame {
+    max-width: 400px;
+    height: auto;
+    margin-top: 40px;
+    animation: fadeInMagic 1.5s ease-out;
+  }
+
+  .cosmic-frame {
+    max-width: 160px; /* 2.5x plus petit que 400px */
+    height: auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    animation: fadeInMagic 1.5s ease-out;
+    display: block;
+    position: relative;
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .cosmic-frame {
+    animation: fadeInMagic 1.5s ease-out, slowRotate 60s linear infinite;
+    max-width: 160px;
+    height: auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    display: block;
+    position: relative;
+  }
+
+  .cosmic-canvas-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+
+  #cosmicParticles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .cosmic-frame {
+    max-width: 160px;
+    height: auto;
+    animation: slowRotate 60s linear infinite;
+    display: block;
+    position: relative;
+  }
+
+  .blur-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(140, 0, 255, 0.08), rgba(0,0,0,0));
+    filter: blur(24px);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: rotateBlur 40s linear infinite;
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  @keyframes rotateBlur {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .blur-aura-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), rgba(120, 0, 255, 0.02));
+    filter: blur(28px);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: rotateBlurReverse 50s linear infinite reverse;
+    z-index: -3;
+    pointer-events: none;
+  }
+
+  @keyframes rotateBlurReverse {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+  }
+
+  .cosmic-halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0));
+    box-shadow: 0 0 60px 25px rgba(150, 80, 255, 0.15);
+    transform: translate(-50%, -50%);
+    animation: haloPulse 8s ease-in-out infinite;
+    z-index: -4;
+    pointer-events: none;
+  }
+
+  @keyframes haloPulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 1;
+    }
+  }
+
+.interactive-grid-link {
+  display: inline-block;
+  cursor: pointer;
+}
+.interactive-grid-link:hover .cosmic-frame {
+  filter: drop-shadow(0 0 12px #ffe082);
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .bubble {
+    width: 90vw !important;
+    height: auto !important;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    line-height: 1.6rem;
+  }
+
+  .cta img {
+    width: 70vw !important;
+    margin-top: 2rem !important;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center;
+  }
+
+  .popup-container {
+    max-width: 95vw !important;
+    padding: 1.5rem !important;
+  }
+
+  .popup-overlay {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    padding-top: 10vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogan span {
+    font-size: 1.1rem !important;
+    line-height: 1.5rem;
+  }
+
+  .popup-container h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .popup-close {
+    top: 0.5rem !important;
+    right: 1rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header img {
+    width: 80vw !important;
+    max-height: 15vh !important;
+    margin-top: 1rem;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    display: block;
+    margin: 0.3rem 0;
+    line-height: 1.6rem !important;
+    text-align: center;
+  }
+
+  .cta img, .cta button {
+    width: auto !important;
+    max-width: 80vw;
+    padding: 0.7rem 1.4rem !important;
+    font-size: 1rem !important;
+    margin: 1.5rem auto 1rem auto;
+    display: block;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .bubble-options img {
+    width: 60px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 1rem !important;
+    margin-top: 0.3rem;
+  }
+
+  .section-text {
+    padding: 0 1.2rem;
+    font-size: 0.9rem !important;
+    line-height: 1.4rem !important;
+    text-align: center;
+  }
+
+  .popup-container {
+    max-width: 90vw !important;
+    padding: 1.4rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .bubble-options {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .bubble-options .bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bubble-options img {
+    width: 50px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 0.85rem !important;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+  }
+}
+
+
+.headbar {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: none !important;
+}
+
+.popup-menu {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px !important;
+}
+
+.popup-menu .popup-content {
+  padding-top: 80px !important;
+  height: auto !important;
+  justify-content: flex-start !important;
+}
+
+
+.popup-content {
+  text-align: center;
+}
+.closebtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+.popup-content ul li {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 1.2rem;
+  margin: 20px 0;
+  background: linear-gradient(90deg, #ffffff, #FFD700, #ff4500);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.popup-content ul li:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #FFD700;
+  transform: scale(1.05);
+}
+
+.bubble-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 40px auto;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.bubble-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bubble-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 40px auto;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.bubble-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(10px);
+}
+</style>
+<style>
+/* Bouton Nova : rouge → orange */
+.popup-container.nova .reserve-btn {
+  background: linear-gradient(135deg, #dc2626, #f97316) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.nova .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+}
+
+/* Bouton Astrale : bleu foncé → bleu clair */
+.popup-container.astrale .reserve-btn {
+  background: linear-gradient(135deg, #1e3a8a, #60a5fa) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.astrale .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+}
+/* Bouton Cosmic Precise Gradient (bulle matching) */
+.reserve-btn {
+  background: linear-gradient(135deg, #de07fa, #9b10fe, #060ef5, #06acdf) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #9333ea, 0 0 40px #2a0bf5, 0 0 60px #06b6d4;
+}
+/* Apparition douce */
+@keyframes popupFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-container {
+  animation: popupFadeIn 0.5s ease-out;
+  position: relative;
+  width: min(90vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centrage parfait dans la bulle */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  font-family: 'IM Fell English SC', serif;
+}
+
+/* Auras selon type */
+.popup-container.astrale .popup-image {
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+}
+.popup-container.nova .popup-image {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+}
+.popup-container.celeste .popup-image {
+  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+}
+
+/* Bouton fermer visible et responsive */
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 4px 10px;
+}
+#cosmicParticles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: transparent;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .bubble {
+    width: 90vw !important;
+    height: auto !important;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    line-height: 1.6rem;
+  }
+
+  .cta img {
+    width: 70vw !important;
+    margin-top: 2rem !important;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center;
+  }
+
+  .popup-container {
+    max-width: 95vw !important;
+    padding: 1.5rem !important;
+  }
+
+  .popup-overlay {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    padding-top: 10vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogan span {
+    font-size: 1.1rem !important;
+    line-height: 1.5rem;
+  }
+
+  .popup-container h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .popup-close {
+    top: 0.5rem !important;
+    right: 1rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header img {
+    width: 80vw !important;
+    max-height: 15vh !important;
+    margin-top: 1rem;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    display: block;
+    margin: 0.3rem 0;
+    line-height: 1.6rem !important;
+    text-align: center;
+  }
+
+  .cta img, .cta button {
+    width: auto !important;
+    max-width: 80vw;
+    padding: 0.7rem 1.4rem !important;
+    font-size: 1rem !important;
+    margin: 1.5rem auto 1rem auto;
+    display: block;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .bubble-options img {
+    width: 60px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 1rem !important;
+    margin-top: 0.3rem;
+  }
+
+  .section-text {
+    padding: 0 1.2rem;
+    font-size: 0.9rem !important;
+    line-height: 1.4rem !important;
+    text-align: center;
+  }
+
+  .popup-container {
+    max-width: 90vw !important;
+    padding: 1.4rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .bubble-options {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .bubble-options .bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bubble-options img {
+    width: 50px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 0.85rem !important;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+  }
+}
+
+</style><style>
+/* Bouton Nova : rouge → orange */
+.popup-container.nova .reserve-btn {
+  background: linear-gradient(135deg, #dc2626, #f97316) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.nova .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+}
+
+/* Bouton Astrale : bleu foncé → bleu clair */
+.popup-container.astrale .reserve-btn {
+  background: linear-gradient(135deg, #1e3a8a, #60a5fa) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.astrale .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+}
+/* Bouton Cosmic Precise Gradient (bulle matching) */
+.reserve-btn {
+  background: linear-gradient(135deg, #9333ea, #6806fb, #0b0bf5, #06b6d4) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #9333ea, 0 0 40px #0b26f5, 0 0 60px #06b6d4;
+}
+/* Apparition douce */
+@keyframes popupFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-container {
+  animation: popupFadeIn 0.5s ease-out;
+  position: relative;
+  width: min(90vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centrage parfait dans la bulle */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  font-family: 'IM Fell English SC', serif;
+}
+
+/* Auras selon type */
+.popup-container.astrale .popup-image {
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+}
+.popup-container.nova .popup-image {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+}
+.popup-container.celeste .popup-image {
+  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+}
+
+/* Bouton fermer visible et responsive */
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 4px 10px;
+}
+.cosmic-fog {
+  position: absolute;
+  width: 600px;
+  height: auto;
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2.2);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+  animation: fogFloat 8s ease-in-out infinite alternate;
+  filter: blur(22px) brightness(1.8);
+}
+
+@keyframes fogFloat {
+  0% { transform: translate(-50%, -50%) scale(1.55); opacity: 0.45; }
+  100% { transform: translate(-50%, -50%) scale(1.65); opacity: 0.6; }
+}
+
+@media (max-width: 768px) {
+  .bubble {
+    width: 90vw !important;
+    height: auto !important;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    line-height: 1.6rem;
+  }
+
+  .cta img {
+    width: 70vw !important;
+    margin-top: 2rem !important;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center;
+  }
+
+  .popup-container {
+    max-width: 95vw !important;
+    padding: 1.5rem !important;
+  }
+
+  .popup-overlay {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    padding-top: 10vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogan span {
+    font-size: 1.1rem !important;
+    line-height: 1.5rem;
+  }
+
+  .popup-container h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .popup-close {
+    top: 0.5rem !important;
+    right: 1rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header img {
+    width: 80vw !important;
+    max-height: 15vh !important;
+    margin-top: 1rem;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    display: block;
+    margin: 0.3rem 0;
+    line-height: 1.6rem !important;
+    text-align: center;
+  }
+
+  .cta img, .cta button {
+    width: auto !important;
+    max-width: 80vw;
+    padding: 0.7rem 1.4rem !important;
+    font-size: 1rem !important;
+    margin: 1.5rem auto 1rem auto;
+    display: block;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .bubble-options img {
+    width: 60px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 1rem !important;
+    margin-top: 0.3rem;
+  }
+
+  .section-text {
+    padding: 0 1.2rem;
+    font-size: 0.9rem !important;
+    line-height: 1.4rem !important;
+    text-align: center;
+  }
+
+  .popup-container {
+    max-width: 90vw !important;
+    padding: 1.4rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .bubble-options {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .bubble-options .bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bubble-options img {
+    width: 50px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 0.85rem !important;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+  }
+}
+
+</style>
+<style>
+.popup-role-content {
+  background: rgba(20,20,30,0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px #fff2;
+  width: 90vw;
+  max-width: 400px;
+}
+
+@media (max-width: 480px) {
+  .popup-role-content {
+    width: 92vw;
+    padding: 1.2rem;
+  }
+}
+
+.popup-role-content .popup-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+</style>
+<style>
+/* Centrage total du popup "Tu es..." même en responsive */
+#role-popup {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.popup-role-content {
+  background: rgba(20,20,30,0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px #fff2;
+  width: 90vw;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .popup-role-content {
+    width: 92vw;
+    padding: 1.2rem;
+  }
+}
+
+.popup-role-content .popup-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+</style>
+<style>
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .main-content, .landing-wrapper {
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+</style>
+<style>
+  .headbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    z-index: 100;
+    padding: 0 20px;
+  }
+  .headbar img {
+    margin-left: -8px;
+    height: 40px;
+  }
+  body {
+    padding-top: 60px;
+  }
+  .menu-button-container {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .menu-button {
+    height: 5px;
+    cursor: pointer;
+  }
+</style>
+<style>
+.bubble-more-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+.btn-more {
+  display: inline-block;
+  padding: 8px 16px;
+  background: transparent;
+  color: #FFD700;
+  font-size: 1rem;
+  text-decoration: underline;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-more:hover {
+  color: white;
+  transform: scale(1.05);
+}
+</style>
+<style>
+.bubble-more-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.btn-more {
+  display: inline-block;
+  padding: 10px 18px;
+  background: transparent;
+  color: #FFD700;
+  font-size: 1rem;
+  text-decoration: underline;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-more:hover {
+  color: white;
+  transform: scale(1.05);
+}
+</style>
+<style>
+    .main-centered-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin-top: 40px;
+    }
+    </style><style>
+.cosmic-canvas-wrapper {
+    margin-top: 120px !important;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+</style><style>
+.bubble-gradient-text {
+  background: linear-gradient(to right, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style><style>
+.bubble-info-button img {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.bubble-info-button img:hover {
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
+  transform: scale(1.05);
+}
+</style><style>
+.spaced-section { margin-top: 2rem; margin-bottom: 2rem; }
+.spaced-small { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.spaced-large { margin-top: 3rem; margin-bottom: 3rem; }
+</style>
+<style>
+  .popup-role-content a:hover {
+    background: linear-gradient(to right, red, gold, white);
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+</style>
+<style>
+#popup-price {
+  font-size: 1.4rem !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-weight: bold;
+  margin-top: 10px;
+}
+</style>
+<style>
+.gradient-text {
+  background: linear-gradient(to right, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.gradient-button {
+  background: linear-gradient(to right, white, gold, red);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+}
+
+.gradient-button:hover {
+  opacity: 0.85;
+}
+</style>
+</head>
+<body>
+<div class="headbar">
+<img alt="Bubbles Legacy Logo" class="logo-headbar" src="titre-detoure.png"/>
+<div class="menu-button-container">
+<img alt="Menu" class="menu-button" onclick="openPopup()" src="bouton_menu.png"/>
+</div>
+</div>
+<video autoplay="" id="bg-video" loop="" muted="" playsinline="">
+<source src="fond_galaxie.webm" type="video/webm"/>
+</video>
+<div class="main-centered-wrapper"><div class="slogan spaced-section">
+<img alt="Bulle centrale" class="bubble" src="bulle_centrale_big.png"/>
+</div><div class="slogan">
+<span>Ta</span>
+<span>bulle.</span>
+<span>Ta</span>
+<span>présence.</span>
+<span>Ta</span>
+<span>légende.</span>
+</div><div class="cta spaced-section">
+<img alt="Réserver ma bulle" id="reserve-button" src="bouton_reserver_or_vieilli.png"/>
+</div><div class="bubble-options spaced-section">
+<div class="bubble-choice fade-in">
+<img alt="Bulle Astrale" src="astrale_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Astrale</p>
+</div>
+<div class="bubble-choice fade-in">
+<img alt="Bulle Céleste" src="celeste_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Céleste</p>
+</div>
+<div class="bubble-choice fade-in">
+<img alt="Bulle Nova" src="nova_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Nova</p>
+</div>
+<div>
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": { "enable": true, "value_area": 800 }
+      },
+      "color": { "value": "#FFD700" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": true
+      },
+      "size": {
+        "value": 2,
+        "random": true
+      },
+      "line_linked": {
+        "enable": false
+      },
+      "move": {
+        "enable": true,
+        "speed": 0.5,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false
+      }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": { "enable": false },
+        "onclick": { "enable": false },
+        "resize": true
+      }
+    },
+    "retina_detect": true
+  });
+});
+</script>
+<style>
+/* Bouton Nova : rouge → orange */
+.popup-container.nova .reserve-btn {
+  background: linear-gradient(135deg, #dc2626, #f97316) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.nova .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+}
+
+/* Bouton Astrale : bleu foncé → bleu clair */
+.popup-container.astrale .reserve-btn {
+  background: linear-gradient(135deg, #1e3a8a, #60a5fa) !important;
+  color: white !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.popup-container.astrale .reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #003cff, 0 0 40px #4c97ff;
+}
+/* Bouton Cosmic Precise Gradient (bulle matching) */
+.reserve-btn {
+  background: linear-gradient(135deg, #ffffff, #fbb104, #ffb404, #ff0303) !important;
+  color: rgb(0, 0, 0) !important;
+  font-family: 'IM Fell English SC', serif;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
+  background-size: 300% 300%;
+}
+.reserve-btn:hover {
+  transform: scale(1.06);
+  background-position: right center;
+  box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+}
+/* Apparition douce */
+@keyframes popupFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-container {
+  animation: popupFadeIn 0.5s ease-out;
+  position: relative;
+  width: min(90vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centrage parfait dans la bulle */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  font-family: 'IM Fell English SC', serif;
+}
+
+/* Auras selon type */
+.popup-container.astrale .popup-image {
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+}
+.popup-container.nova .popup-image {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+}
+.popup-container.celeste .popup-image {
+  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+}
+
+/* Bouton fermer visible et responsive */
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 4px 10px;
+}
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup-container {
+  position: relative;
+  width: min(90vw, 360px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-image {
+  width: 100%;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.5), 0 0 80px 40px rgba(124, 58, 237, 0.2);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+}
+
+.popup-info {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  padding: 0 1rem;
+  color: white;
+  text-shadow: 0 0 8px #000;
+  font-family: 'IM Fell English SC', serif;
+}
+
+.popup-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.popup-button {
+  margin-top: 0.6rem;
+  padding: 8px 18px;
+  background: gold;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  animation: pulse 3s ease infinite;
+}
+
+/* animation cosmique subtile */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .bubble {
+    width: 90vw !important;
+    height: auto !important;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    line-height: 1.6rem;
+  }
+
+  .cta img {
+    width: 70vw !important;
+    margin-top: 2rem !important;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center;
+  }
+
+  .popup-container {
+    max-width: 95vw !important;
+    padding: 1.5rem !important;
+  }
+
+  .popup-overlay {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    padding-top: 10vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .slogan span {
+    font-size: 1.1rem !important;
+    line-height: 1.5rem;
+  }
+
+  .popup-container h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .popup-close {
+    top: 0.5rem !important;
+    right: 1rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header img {
+    width: 80vw !important;
+    max-height: 15vh !important;
+    margin-top: 1rem;
+  }
+
+  .slogan span {
+    font-size: 1.3rem !important;
+    display: block;
+    margin: 0.3rem 0;
+    line-height: 1.6rem !important;
+    text-align: center;
+  }
+
+  .cta img, .cta button {
+    width: auto !important;
+    max-width: 80vw;
+    padding: 0.7rem 1.4rem !important;
+    font-size: 1rem !important;
+    margin: 1.5rem auto 1rem auto;
+    display: block;
+  }
+
+  .bubble-options {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .bubble-options img {
+    width: 60px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 1rem !important;
+    margin-top: 0.3rem;
+  }
+
+  .section-text {
+    padding: 0 1.2rem;
+    font-size: 0.9rem !important;
+    line-height: 1.4rem !important;
+    text-align: center;
+  }
+
+  .popup-container {
+    max-width: 90vw !important;
+    padding: 1.4rem !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .bubble-options {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .bubble-options .bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bubble-options img {
+    width: 50px !important;
+    height: auto;
+  }
+
+  .bubble-options h3 {
+    font-size: 0.85rem !important;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+  }
+}
+
+</style>
+<div class="popup-overlay" id="popup">
+<div class="popup-container" id="popup-container">
+<img alt="Bulle" class="popup-image" id="popup-img" src=""/>
+<div class="popup-info">
+<h2 id="popup-name">Nom</h2>
+<p id="popup-desc">Description</p>
+<div class="popup-price" id="popup-price">Prix</div>
+<button class="reserve-btn popup-button go-to-reservation" type="button">Réserver cette bulle</button>
+</div>
+<div class="popup-close" onclick="closeBubblePopup()">×</div>
+</div>
+</div>
+<script>
+function showPopup(type) {
+  
+const popup = document.getElementById('popup');
+const container = document.getElementById('popup-container');
+
+  const img = document.getElementById('popup-img');
+  const name = document.getElementById('popup-name');
+  const desc = document.getElementById('popup-desc');
+  const price = document.getElementById('popup-price');
+
+  const data = {
+    astrale: {
+      img: 'popup_astrale.png',
+      name: 'Bulle Astrale',
+      desc: 'Pour ceux qui souhaitent marquer leur présence discrètement.',
+      price: '19 €'
+    },
+    nova: {
+      img: 'popup_nova.png',
+      name: 'Bulle Nova',
+      desc: 'Une bulle en expansion, prête à briller.',
+      price: '49 €'
+    },
+    celeste: {
+      img: 'popup_celeste.png',
+      name: 'Bulle Céleste',
+      desc: 'Une étoile fixe dans l’univers digital.',
+      price: '99 €'
+    }
+  };
+
+  const bubble = data[type];
+  img.src = bubble.img;
+  name.innerText = bubble.name;
+  desc.innerText = bubble.desc;
+  price.innerText = bubble.price;
+  
+  popup.setAttribute('role', 'dialog');
+  popup.setAttribute('aria-labelledby', 'popup-name');
+
+  container.className = 'popup-container ' + type;
+
+  popup.style.display = 'flex';
+}
+
+function closeMenuPopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+document.querySelectorAll('.bubble-choice img').forEach(img => {
+  const alt = img.alt.toLowerCase();
+  if (alt.includes("astrale")) img.onclick = () => showPopup('astrale');
+  if (alt.includes("nova")) img.onclick = () => showPopup('nova');
+  if (alt.includes("céleste")) img.onclick = () => showPopup('celeste');
+});
+</script>
+<script>
+document.getElementById('reserve-button').addEventListener('click', () => {
+  document.getElementById('popup-reservation').style.display = 'flex';
+});
+function closeReservationPopup() {
+  document.getElementById('popup-reservation').style.display = 'none';
+}
+
+document.getElementById('popup-reservation').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeReservationPopup();
+  }
+});
+</script><script>
+document.getElementById("btn-entreprise").addEventListener("click", () => {
+  document.getElementById("form-entreprise").style.display = "block";
+  document.getElementById("form-createur").style.display = "none";
+});
+document.getElementById("btn-createur").addEventListener("click", () => {
+  document.getElementById("form-createur").style.display = "block";
+  document.getElementById("form-entreprise").style.display = "none";
+});
+</script><script>
+document.getElementById("type-bulle").addEventListener("change", function() {
+  const info = document.getElementById("bulle-info");
+  if (this.value === "celeste") {
+    info.innerHTML = "<strong>Bulle Céleste :</strong> + Grande taille, Halo animé, Position garantie dans le Hall of Legacy (Top 10), Visibilité maximale sur la grille, Badge Fondateur.";
+  } else {
+    info.innerHTML = "<strong>Bulle Nova :</strong> Offre découverte, bulle simple, visibilité standard.";
+  }
+});
+</script><script>
+function openOfferPopup(title) {
+    alert("Détails de l’offre " + title + " (popup complet à venir)");
+}
+</script>
+<div class="popup-menu" id="popupMenu">
+<div class="popup-content" style="padding-top: 40px;">
+<span class="closebtn" onclick="closeMenuPopup()">×</span>
+<ul style="list-style: none; padding: 0; margin-top: 0; text-align: center;">
+<li style="margin: 20px 0;"><a class="go-to-reservation" href="#" style="text-decoration: none; color: inherit;">Acheter ma bulle</a></li>
+<li style="margin: 20px 0;"><a href="roadmap.html" style="text-decoration: none; color: inherit;">Roadmap</a></li>
+<li style="margin: 20px 0;"><a href="histoire.html" style="text-decoration: none; color: inherit;">Histoire de Bubbles Legacy</a></li>
+<li style="margin: 20px 0;"><a href="#" style="text-decoration: none; color: inherit;" 
+onclick="document.getElementById('popup-menu').classList.remove('active'); document.getElementById('popup-menu').style.display = 'none'; window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+>Retour à l'accueil</a></li>
+<li style="margin: 20px 0;">Whitepaper</li>
+<li style="margin: 20px 0;"><a href="#grille" style="text-decoration: none; color: inherit;">Voir la grille</a></li>
+</ul>
+</div>
+</div>
+<script>
+function openPopup() {
+  const menu = document.getElementById('popupMenu');
+  if (menu) {
+    console.log("Popup ouverte :", menu);
+    menu.style.display = 'flex';
+  } else {
+    console.error("popupMenu introuvable");
+  }
+}
+function closeMenuPopup() {
+  const menu = document.getElementById('popupMenu');
+  if (menu) {
+    menu.style.display = 'none';
+  }
+}
+</script>
+<script>
+// Fermer le popup de menu
+function closeMenuPopup() {
+  const menu = document.getElementById('popupMenu');
+  if (menu) {
+    menu.style.display = 'none';
+  }
+}
+
+// Fermer le popup de bulle
+function closeBubblePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+// Fermer le popup menu quand on clique dehors
+document.getElementById('popupMenu').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeMenuPopup();
+  }
+});
+
+// Fermer le popup bulle quand on clique dehors
+document.getElementById('popup').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeBubblePopup();
+  }
+});
+</script>
+</div></div>
+<div class="bubble-availability-note spaced-small">
+<p class="bubble-gradient-text" style="font-family: 'IM Fell English SC', serif; color: #FFD700; font-size: 1.2rem; line-height: 1.6;">
+    Disponible seulement pour entreprise et créateur de contenu
+  </p><div class="video-demo-wrapper" style="margin-top: 1.2rem; text-align: center;"><video autoplay="True" loop="True" muted="True" playsinline="True" style="max-width: 480px; width: 90%; border-radius: 16px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);"><source src="video_demo_embed.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="bubble-info-button spaced-section">
+<img alt="En savoir plus" src="bouton_savoir_plus.png" style="width: 200px; height: auto; cursor: pointer;"/>
+</div>
+<p class="description spaced-large">
+
+  Le digital est éphémère. Ton empreinte, non.<br/>
+  Bubbles Legacy est plus qu’un espace de visibilité.<br/>
+  C’est une toile éternelle où chaque bulle raconte une histoire : la tienne.
+</p>
+<div class="voir-grille-button" style="width: 100%; text-align: center; margin-top: 2rem;">
+<img alt="Voir la grille" src="voir_grille.png" style="width: 300px; height: 300px; cursor: pointer;"/>
+</div>
+</div><div class="cosmic-canvas-wrapper spaced-large"><div class="cosmic-halo"></div><div class="blur-aura-inner"></div><div class="blur-aura"></div><canvas height="400" id="cosmicParticles" width="400"></canvas><img alt="Brume cosmique lumineuse" class="cosmic-fog" src="cosmic_fog.png"/><a class="interactive-grid-link" href="grille.html" target="_blank"><img alt="Cadre cosmique Bubbles Legacy" class="cosmic-frame" src="(1000 x 1200 px) (1000 x 1200 px) (1).png" style="max-width: 220px; height: auto;"/></a></div><script>
+window.addEventListener('DOMContentLoaded', function () {
+  const canvas = document.getElementById('cosmicParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const allParticles = [];
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const white = '#ffffff';
+  const red = '#ff3333';
+
+  for (let i = 0; i < 1000; i++) {
+    allParticles.push({
+      color: white,
+      radius: 40 + Math.random() * 120,
+      angle: Math.random() * 2 * Math.PI,
+      speed: 0.0005 + Math.random() * 0.001,
+      size: 0.1,
+      opacity: 0.3 + Math.random() * 0.3
+    });
+  }
+
+  for (let i = 0; i < 618; i++) {
+    allParticles.push({
+      color: red,
+      radius: 50 + Math.random() * 140,
+      angle: Math.random() * 2 * Math.PI,
+      speed: 0.0006 + Math.random() * 0.0015,
+      size: 0.169,
+      opacity: 0.4 + Math.random() * 0.4
+    });
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    allParticles.forEach(p => {
+      p.angle += p.speed;
+      const x = centerX + Math.cos(p.angle) * p.radius;
+      const y = centerY + Math.sin(p.angle) * p.radius;
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  setInterval(animateParticles, 1000 / 30);
+});
+</script>
+<div class="popup-overlay" id="popup-info" style="display:none;">
+<div class="popup-role-content">
+<div class="popup-close" onclick="document.getElementById('popup-info').style.display='none';">×</div>
+<h2 style="font-family: 'IM Fell English SC', serif; font-size: 1.4rem; color: #FFD700; margin-bottom: 1rem;background: linear-gradient(to right, white, gold, red);-webkit-background-clip: text;-webkit-text-fill-color: transparent;color: transparent;">Un hub d’interactions. Une matrice d’alliances.</h2>
+<p style="font-family: 'IM Fell English SC', serif; font-size: 1.05rem; line-height: 1.7; color: white;">
+      Pourquoi rejoindre Bubbles Legacy ?<br/>
+C’est un hub digital unique où créateurs et entreprises coexistent, interagissent, et gagnent en visibilité..<br/><br/>
+      🎥 <strong>Créateur de contenu</strong> ? Ta bulle s’agrandit avec tes performances. Plus tu es vu, plus tu prends de place.<br/>
+      🏢 <strong>Entreprise</strong> ? Ta bulle s’élargit avec ton investissement en <strong>LUX</strong> notre monnaie interne. Elle reflète ton engagement et renforce ta présence..<br/><br/>
+      Dans ce monde où chacun veut <em>être vu ou vendre</em>, Bubbles Legacy devient un <strong>lieu d’interaction cosmique</strong>.<br/>
+      Un espace où l’attention génère de la valeur.<br/>
+     Un outil de mise en relation, de branding, et de visibilité sur le long terme..<br/></p>
+<a href="histoire.html" style="display:inline-block; margin-top: 0.1rem; padding: 10px 20px; background: #FFD700; color: black; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.95rem;background: linear-gradient(to right, white, gold, red);color: rgb(0, 0, 0);border: none;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);">Voir l’histoire complète</a>
+</div>
+</div>
+<script>
+document.querySelector('.bubble-info-button img').addEventListener('click', () => {
+  document.getElementById('popup-info').style.display = 'flex';
+});
+</script>
+<div class="popup-overlay" id="popup-reservation" style="display:none;">
+<div class="popup-role-content" id="step-container">
+<div class="popup-close" onclick="closeReservationPopup()">×</div>
+<!-- Step 1: Role selection -->
+<div id="step-role" style="display: flex; flex-direction: column; gap: 20px;">
+<h2>Réserver ma bulle</h2>
+<p>Qui es-tu ?</p>
+<button class="reserve-btn" onclick="selectRole('entreprise')">Je suis une entreprise</button>
+<button class="reserve-btn" onclick="selectRole('createur')">Je suis un créateur</button>
+</div>
+<!-- Step 2: Bubble + Payment -->
+<div id="step-bubble" style="display:none; flex-direction: column; gap: 20px;">
+<button class="gradient-button" onclick="backToRole()" style="align-self: start; background: none; color: #FFD700; border: none; cursor: pointer;">← Revenir</button>
+<h3>Choisis ta bulle</h3>
+<select id="bubble-type" onchange="updateAmountDisplay()">
+<option value="astrale">Astrale (19 €)</option>
+<option value="nova">Nova (49 €)</option>
+<option value="celeste">Céleste (99 €)</option>
+<option value="influence">Bulle Influenceur (gratuite)</option>
+</select>
+<div id="crypto-payment" style="margin-top: 10px; text-align: center;">
+<h3 class="gradient-text" style="margin-bottom: 10px; color: #FFD700;">Paiement en USDC (BNB Smart Chain)</h3>
+<p>Scanne ou copie l’adresse :</p>
+<img alt="QR Code USDC" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=0x576dF3bF417cA224a10970a4AB46d51A4FaABEF5" style="width: 140px; height: 140px; margin: 10px auto; display: block;"/>
+<p style="word-break: break-all;"><strong>0x576dF3bF417cA224a10970a4AB46d51A4FaABEF5</strong></p>
+<button onclick="navigator.clipboard.writeText('0x576dF3bF417cA224a10970a4AB46d51A4FaABEF5')" style="margin-top: 8px; padding: 8px 14px; background: #FFD700; border: none; cursor: pointer; font-weight: bold;">
+          Copier l'adresse
+        </button>
+<p style="margin-top: 10px;">Montant :</p>
+<p id="usdc-amount" style="font-weight: bold; font-size: 1.2rem;">19 USDC</p>
+<button onclick="goToForm()" style="margin-top: 14px; padding: 10px 20px; background: white; color: black; font-weight: bold; border: none; cursor: pointer;">
+          J’ai payé
+        </button>
+</div>
+</div>
+<!-- Step 3: Form -->
+<div id="step-form" style="display:none;">
+<form id="final-form" style="display: flex; flex-direction: column; gap: 15px;">
+<h3>Informations</h3>
+<input id="nom" name="nom" placeholder="Nom ou pseudo" required="" type="text"/>
+<input id="lien" name="lien" placeholder="Site ou réseaux sociaux" required="" type="url"/>
+<textarea name="description" placeholder="Décris ton projet ou entreprise" required="" rows="4"></textarea>
+<button style="padding: 10px; background: #fff; color: #000; border: none; cursor: pointer;" type="submit">
+          Envoyer ma demande
+        </button><input name="logo" placeholder="Lien vers ton logo (.png)" required="" type="url"/>
+</form>
+</div>
+</div>
+</div>
+<script>
+  function closeReservationPopup() {
+    document.getElementById('popup-reservation').style.display = 'none';
+  }
+
+  function selectRole(role) {
+    document.getElementById('step-role').style.display = 'none';
+    document.getElementById('step-bubble').style.display = 'flex';
+    const bubbleSelect = document.getElementById('bubble-type');
+    bubbleSelect.value = (role === 'influenceur') ? 'influence' : 'astrale';
+    updateAmountDisplay();
+  }
+
+  function backToRole() {
+    document.getElementById('step-bubble').style.display = 'none';
+    document.getElementById('step-role').style.display = 'flex';
+  }
+
+  function updateAmountDisplay() {
+    const type = document.getElementById('bubble-type').value;
+    const display = document.getElementById('usdc-amount');
+    if (type === "astrale") display.textContent = "19 USDC";
+    else if (type === "nova") display.textContent = "49 USDC";
+    else if (type === "celeste") display.textContent = "99 USDC";
+    else display.textContent = "0 USDC (Gratuit)";
+  }
+
+  function goToForm() {
+    document.getElementById('step-bubble').style.display = 'none';
+    document.getElementById('step-form').style.display = 'block';
+  }
+
+  document.getElementById('reserve-button')?.addEventListener('click', () => {
+    document.getElementById('popup-reservation').style.display = 'flex';
+    document.getElementById('step-role').style.display = 'flex';
+    document.getElementById('step-bubble').style.display = 'none';
+    document.getElementById('step-form').style.display = 'none';
+  });
+</script>
+<script>
+document.getElementById("final-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nom = document.getElementById("nom").value;
+  const lien = document.getElementById("lien").value;
+  const description = document.querySelector("textarea[name='description']").value;
+  const logo = document.querySelector("input[name='logo']").value;
+
+  fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLgSjsYvn4XSa8QdZ93mpl141W774_UKUsXSom47kn9xmjljX0ZaW8ONHuoyZi9ol4nuYMf3yr0RHTy1CxEw9u1KElsBskjPo9pQKwsXZ1_HWJZzjHb5cvo7ImZ9RqwN0Fjn9mjnVliklrlYWJ9zIYjDuU2WNi8BjNMcRa_v", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ nom, lien, description, logo })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Demande envoyée avec succès !");
+      document.getElementById("final-form").reset();
+    } else {
+      alert("Erreur lors de l'envoi du formulaire.");
+    }
+  })
+  .catch(error => {
+    alert("Erreur de connexion : " + error);
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('.go-to-reservation').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const popup = document.getElementById('popup-reservation');
+    if (popup) {
+      popup.style.display = 'flex';
+      const stepRole = document.getElementById('step-role');
+      const stepBubble = document.getElementById('step-bubble');
+      const stepForm = document.getElementById('step-form');
+      if (stepRole) stepRole.style.display = 'flex';
+      if (stepBubble) stepBubble.style.display = 'none';
+      if (stepForm) stepForm.style.display = 'none';
+    } else {
+      console.error("popup-reservation not found.");
+    }
+  });
+});
+</script>
+<div id="grille" style="height: 300px; background: transparent;"></div>
+</body>
+</html>
