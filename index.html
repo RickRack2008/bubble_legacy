@@ -6,8 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Bubbles Legacy</title>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&amp;display=swap" rel="stylesheet"/>
-<style>
-/* Bouton Nova : rouge → orange */
+<style>/* Bouton Nova : rouge → orange */
 .popup-container.nova .reserve-btn {
   background: linear-gradient(135deg, #dc2626, #f97316) !important;
   color: white !important;
@@ -15,7 +14,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -23,7 +22,7 @@
 .popup-container.nova .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+  
 }
 
 /* Bouton Astrale : bleu foncé → bleu clair */
@@ -34,7 +33,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -42,7 +41,7 @@
 .popup-container.astrale .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+  
 }
 /* Bouton Cosmic Precise Gradient (bulle matching) */
 .reserve-btn {
@@ -52,7 +51,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -60,7 +59,7 @@
 .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #8104f6, 0 0 40px #060afa, 0 0 60px #06b6d4;
+  
 }
 /* Apparition douce */
 @keyframes popupFadeIn {
@@ -92,13 +91,13 @@
 
 /* Auras selon type */
 .popup-container.astrale .popup-image {
-  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+  
 }
 .popup-container.nova .popup-image {
-  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+  
 }
 .popup-container.celeste .popup-image {
-  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+  
 }
 
 /* Bouton fermer visible et responsive */
@@ -388,7 +387,7 @@
     height: 360px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0));
-    box-shadow: 0 0 60px 25px rgba(150, 80, 255, 0.15);
+    
     transform: translate(-50%, -50%);
     animation: haloPulse 8s ease-in-out infinite;
     z-index: -4;
@@ -638,8 +637,11 @@
   align-items: center;
   transform: translateX(10px);
 }
-</style>
-<style>
+
+#step-form button.reserve-btn {
+  background: linear-gradient(to right, white, gold, red);
+}
+
 /* Bouton Nova : rouge → orange */
 .popup-container.nova .reserve-btn {
   background: linear-gradient(135deg, #dc2626, #f97316) !important;
@@ -648,7 +650,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -656,7 +658,7 @@
 .popup-container.nova .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+  
 }
 
 /* Bouton Astrale : bleu foncé → bleu clair */
@@ -667,7 +669,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -675,7 +677,7 @@
 .popup-container.astrale .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+  
 }
 /* Bouton Cosmic Precise Gradient (bulle matching) */
 .reserve-btn {
@@ -685,7 +687,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -693,7 +695,7 @@
 .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #9333ea, 0 0 40px #2a0bf5, 0 0 60px #06b6d4;
+  
 }
 /* Apparition douce */
 @keyframes popupFadeIn {
@@ -725,13 +727,13 @@
 
 /* Auras selon type */
 .popup-container.astrale .popup-image {
-  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+  
 }
 .popup-container.nova .popup-image {
-  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+  
 }
 .popup-container.celeste .popup-image {
-  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+  
 }
 
 /* Bouton fermer visible et responsive */
@@ -889,7 +891,6 @@
   }
 }
 
-</style><style>
 /* Bouton Nova : rouge → orange */
 .popup-container.nova .reserve-btn {
   background: linear-gradient(135deg, #dc2626, #f97316) !important;
@@ -898,7 +899,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -906,7 +907,7 @@
 .popup-container.nova .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+  
 }
 
 /* Bouton Astrale : bleu foncé → bleu clair */
@@ -917,7 +918,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -925,7 +926,7 @@
 .popup-container.astrale .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #1e3a8a, 0 0 40px #60a5fa;
+  
 }
 /* Bouton Cosmic Precise Gradient (bulle matching) */
 .reserve-btn {
@@ -935,7 +936,7 @@
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(147, 51, 234, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -943,7 +944,7 @@
 .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #9333ea, 0 0 40px #0b26f5, 0 0 60px #06b6d4;
+  
 }
 /* Apparition douce */
 @keyframes popupFadeIn {
@@ -975,13 +976,13 @@
 
 /* Auras selon type */
 .popup-container.astrale .popup-image {
-  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+  
 }
 .popup-container.nova .popup-image {
-  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+  
 }
 .popup-container.celeste .popup-image {
-  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+  
 }
 
 /* Bouton fermer visible et responsive */
@@ -1148,14 +1149,12 @@
   }
 }
 
-</style>
-<style>
 .popup-role-content {
   background: rgba(20,20,30,0.95);
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 20px #fff2;
+  
   width: 90vw;
   max-width: 400px;
 }
@@ -1175,8 +1174,7 @@
   cursor: pointer;
   color: white;
 }
-</style>
-<style>
+
 /* Centrage total du popup "Tu es..." même en responsive */
 #role-popup {
   display: flex !important;
@@ -1191,7 +1189,7 @@
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 20px #fff2;
+  
   width: 90vw;
   max-width: 400px;
   box-sizing: border-box;
@@ -1212,9 +1210,8 @@
   cursor: pointer;
   color: white;
 }
-</style>
-<style>
-  html, body {
+
+html, body {
     overflow-x: hidden;
     max-width: 100%;
   }
@@ -1228,9 +1225,8 @@
     max-width: 100%;
     overflow-x: hidden;
   }
-</style>
-<style>
-  .headbar {
+
+.headbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -1261,8 +1257,7 @@
     height: 5px;
     cursor: pointer;
   }
-</style>
-<style>
+
 .bubble-more-wrapper {
   text-align: center;
   margin-top: 20px;
@@ -1282,8 +1277,7 @@
   color: white;
   transform: scale(1.05);
 }
-</style>
-<style>
+
 .bubble-more-wrapper {
   width: 100%;
   display: flex;
@@ -1305,9 +1299,8 @@
   color: white;
   transform: scale(1.05);
 }
-</style>
-<style>
-    .main-centered-wrapper {
+
+.main-centered-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1316,7 +1309,7 @@
         width: 100%;
         margin-top: 40px;
     }
-    </style><style>
+
 .cosmic-canvas-wrapper {
     margin-top: 120px !important;
     margin-bottom: 60px;
@@ -1324,13 +1317,13 @@
     justify-content: center;
     position: relative;
 }
-</style><style>
+
 .bubble-gradient-text {
   background: linear-gradient(to right, white, gold, red);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-</style><style>
+
 .bubble-info-button img {
   transition: filter 0.3s ease, transform 0.3s ease;
 }
@@ -1338,28 +1331,25 @@
   filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
   transform: scale(1.05);
 }
-</style><style>
+
 .spaced-section { margin-top: 2rem; margin-bottom: 2rem; }
 .spaced-small { margin-top: 0.5rem; margin-bottom: 0.5rem; }
 .spaced-large { margin-top: 3rem; margin-bottom: 3rem; }
-</style>
-<style>
-  .popup-role-content a:hover {
+
+.popup-role-content a:hover {
     background: linear-gradient(to right, red, gold, white);
-    box-shadow: 0 0 16px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 0, 0, 0.3);
+    
     transform: scale(1.05);
     transition: all 0.3s ease;
   }
-</style>
-<style>
+
 #popup-price {
   font-size: 1.4rem !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
   font-weight: bold;
   margin-top: 10px;
 }
-</style>
-<style>
+
 .gradient-text {
   background: linear-gradient(to right, white, gold, red);
   -webkit-background-clip: text;
@@ -1381,102 +1371,59 @@
 .gradient-button:hover {
   opacity: 0.85;
 }
-</style>
-</head>
-<body>
-<div class="headbar">
-<img alt="Bubbles Legacy Logo" class="logo-headbar" src="titre-detoure.png"/>
-<div class="menu-button-container">
-<img alt="Menu" class="menu-button" onclick="openPopup()" src="bouton_menu.png"/>
-</div>
-</div>
-<video autoplay="" id="bg-video" loop="" muted="" playsinline="">
-<source src="fond_galaxie.webm" type="video/webm"/>
-</video>
-<div class="main-centered-wrapper"><div class="slogan spaced-section">
-<img alt="Bulle centrale" class="bubble" src="bulle_centrale_big.png"/>
-</div><div class="slogan">
-<span>Ta</span>
-<span>bulle.</span>
-<span>Ta</span>
-<span>présence.</span>
-<span>Ta</span>
-<span>légende.</span>
-</div><div class="cta spaced-section">
-<img alt="Réserver ma bulle" id="reserve-button" src="bouton_reserver_or_vieilli.png"/>
-</div><div class="bubble-options spaced-section">
-<div class="bubble-choice fade-in">
-<img alt="Bulle Astrale" src="astrale_detoure.png"/>
-<p class="bubble-name bubble-name-sacred">Astrale</p>
-</div>
-<div class="bubble-choice fade-in">
-<img alt="Bulle Céleste" src="celeste_detoure.png"/>
-<p class="bubble-name bubble-name-sacred">Céleste</p>
-</div>
-<div class="bubble-choice fade-in">
-<img alt="Bulle Nova" src="nova_detoure.png"/>
-<p class="bubble-name bubble-name-sacred">Nova</p>
-</div>
-<div>
-<div id="particles-js"></div>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+@keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-  particlesJS("particles-js", {
-    "particles": {
-      "number": {
-        "value": 80,
-        "density": { "enable": true, "value_area": 800 }
-      },
-      "color": { "value": "#FFD700" },
-      "shape": {
-        "type": "circle",
-        "stroke": { "width": 0, "color": "#000000" }
-      },
-      "opacity": {
-        "value": 0.5,
-        "random": true
-      },
-      "size": {
-        "value": 2,
-        "random": true
-      },
-      "line_linked": {
-        "enable": false
-      },
-      "move": {
-        "enable": true,
-        "speed": 0.5,
-        "direction": "none",
-        "random": true,
-        "straight": false,
-        "out_mode": "out",
-        "bounce": false
-      }
-    },
-    "interactivity": {
-      "events": {
-        "onhover": { "enable": false },
-        "onclick": { "enable": false },
-        "resize": true
-      }
-    },
-    "retina_detect": true
-  });
-});
-</script>
-<style>
+    #step-form input,
+    #step-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #2d2d44;
+      color: white;
+      font-size: 1rem;
+    }
+
+    #step-form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #FFD700, #ff6b81, #a29bfe);
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #step-form button:hover {
+      transform: scale(1.03);
+    }
+
+    #step-form h2 {
+      background: linear-gradient(to right, white, gold, red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-family: 'IM Fell English SC', serif;
+    }
+
+    #thank-you-popup {
+      margin-top: 1rem;
+      background-color: #111;
+      padding: 1rem;
+      border-radius: 8px;
+      color: white;
+    }
+
 /* Bouton Nova : rouge → orange */
 .popup-container.nova .reserve-btn {
   background: linear-gradient(135deg, #dc2626, #f97316) !important;
@@ -1485,7 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 25px rgba(249, 115, 22, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -1493,7 +1440,7 @@ document.addEventListener('DOMContentLoaded', () => {
 .popup-container.nova .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #dc2626, 0 0 40px #f97316;
+  
 }
 
 /* Bouton Astrale : bleu foncé → bleu clair */
@@ -1504,7 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(30, 58, 138, 0.4), 0 0 25px rgba(96, 165, 250, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -1512,7 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
 .popup-container.astrale .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #003cff, 0 0 40px #4c97ff;
+  
 }
 /* Bouton Cosmic Precise Gradient (bulle matching) */
 .reserve-btn {
@@ -1522,7 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
   padding: 0.7rem 1.8rem;
   border-radius: 50px;
   border: 2px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(6, 182, 212, 0.2);
+  
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
   background-size: 300% 300%;
@@ -1530,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', () => {
 .reserve-btn:hover {
   transform: scale(1.06);
   background-position: right center;
-  box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+  
 }
 /* Apparition douce */
 @keyframes popupFadeIn {
@@ -1562,13 +1509,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Auras selon type */
 .popup-container.astrale .popup-image {
-  box-shadow: 0 0 50px rgba(124, 58, 237, 0.4), 0 0 80px 30px rgba(124, 58, 237, 0.3);
+  
 }
 .popup-container.nova .popup-image {
-  box-shadow: 0 0 50px rgba(34, 211, 238, 0.5), 0 0 80px 30px rgba(34, 211, 238, 0.3);
+  
 }
 .popup-container.celeste .popup-image {
-  box-shadow: 0 0 60px rgba(250, 204, 21, 0.5), 0 0 90px 40px rgba(250, 204, 21, 0.25);
+  
 }
 
 /* Bouton fermer visible et responsive */
@@ -1605,7 +1552,7 @@ document.addEventListener('DOMContentLoaded', () => {
   width: 100%;
   border-radius: 50%;
   mix-blend-mode: screen;
-  box-shadow: 0 0 60px rgba(124, 58, 237, 0.5), 0 0 80px 40px rgba(124, 58, 237, 0.2);
+  
   mask-image: radial-gradient(circle, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
   -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
 }
@@ -1788,7 +1735,514 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 }
 
-</style>
+
+
+
+
+
+.footer-btn-img {
+  width: 50px !important;
+  height: 50px !important;
+  cursor: pointer;
+  border-radius: 8px; /* arrondi pour que box-shadow soit propre */
+}
+
+
+
+
+.footer-btn-img {
+  position: relative;
+  z-index: 1;
+  width: 50px !important;
+  height: 50px !important;
+  cursor: pointer;
+  border-radius: 8px; /* arrondi optionnel */
+  transition: none;
+}
+
+
+.btn-wrapper {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.btn-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.footer-btn-img {
+  width: 50px !important;
+  height: 50px !important;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: none;
+}
+
+
+.join-us-text {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+.footer-legal {
+  text-align: center;
+  font-family: 'IM Fell English SC', serif;
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-legal a {
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+.footer-legal a:hover {
+  text-decoration: underline;
+}
+
+.footer-quote {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* Popup remerciement overlay */
+.thanks-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Contenu popup */
+.thanks-popup-content {
+  background: black;
+  border-radius: 20px;
+  padding: 40px 60px;
+  text-align: center;
+  font-family: 'IM Fell English SC', serif;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Titre */
+.thanks-popup-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: transparent;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Paragraphe */
+.thanks-popup-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/* Bouton retour */
+.thanks-popup-content .btn-return {
+  background: linear-gradient(90deg, gold, red);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'IM Fell English SC', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thanks-popup-content .btn-return:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+}
+
+
+#step-form {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 40px 0 0 0 !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  font-family: 'IM Fell English SC', serif;
+  color: white;
+  text-align: center;
+  box-shadow: none !important;
+}
+
+#step-form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#step-form label {
+  display: block;
+  margin: 15px 0 8px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#step-form input,
+#step-form select,
+#step-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-family: 'IM Fell English SC', serif;
+  background: rgba(30, 30, 45, 0.8);
+  color: #eee;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#step-form input::placeholder,
+#step-form textarea::placeholder {
+  font-family: 'IM Fell English SC', serif;
+  color: #bbb;
+  opacity: 1;
+}
+
+#step-form input:focus,
+#step-form select:focus,
+#step-form textarea:focus {
+  outline: none;
+  background-color: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+#step-form button {
+  background: linear-gradient(90deg, gold, red);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'IM Fell English SC', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step-form button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+}
+
+#step-form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#step-form label {
+  display: block;
+  margin: 15px 0 8px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#step-form input,
+#step-form select,
+#step-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-family: 'IM Fell English SC', serif;
+  background: rgba(30, 30, 45, 0.8);
+  color: #eee;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#step-form input::placeholder,
+#step-form textarea::placeholder {
+  font-family: 'IM Fell English SC', serif;
+  color: #bbb;
+  opacity: 1;
+}
+
+#step-form input:focus,
+#step-form select:focus,
+#step-form textarea:focus {
+  outline: none;
+  background-color: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+#step-form button {
+  background: linear-gradient(90deg, gold, red);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'IM Fell English SC', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step-form button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+}
+
+#step-form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#step-form label {
+  display: block;
+  margin: 15px 0 8px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#step-form input,
+#step-form select,
+#step-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-family: 'IM Fell English SC', serif;
+  background: rgba(30, 30, 45, 0.8);
+  color: #eee;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#step-form input::placeholder,
+#step-form textarea::placeholder {
+  font-family: 'IM Fell English SC', serif;
+  color: #bbb;
+  opacity: 1;
+}
+
+#step-form input:focus,
+#step-form select:focus,
+#step-form textarea:focus {
+  outline: none;
+  background-color: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+#step-form button {
+  background: linear-gradient(90deg, gold, red);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'IM Fell English SC', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step-form button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+}
+
+#step-form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, white, gold, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#step-form label {
+  display: block;
+  margin: 15px 0 8px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#step-form input,
+#step-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-family: 'IM Fell English SC', serif;
+}
+
+#step-form button {
+  background: linear-gradient(90deg, gold, red);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'IM Fell English SC', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step-form button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+}
+</style><style>
+#finalPopup {
+  display: none !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: fit-content !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  z-index: 10000 !important;
+}
+</style></head>
+<body>
+<div class="headbar">
+<img alt="Bubbles Legacy Logo" class="logo-headbar" src="titre-detoure.png"/>
+<div class="menu-button-container">
+<img alt="Menu" class="menu-button" onclick="openPopup()" src="bouton_menu.png"/>
+</div>
+</div>
+<video autoplay="" id="bg-video" loop="" muted="" playsinline="">
+<source src="fond_galaxie.webm" type="video/webm"/>
+</video>
+<div class="main-centered-wrapper"><div class="slogan spaced-section">
+<img alt="Bulle centrale" class="bubble" src="bulle_centrale_big.png"/>
+</div><div class="slogan">
+<span>Ta</span>
+<span>bulle.</span>
+<span>Ta</span>
+<span>présence.</span>
+<span>Ta</span>
+<span>légende.</span>
+</div><div class="cta spaced-section">
+<img alt="Réserver ma bulle" id="reserve-button" src="bouton_reserver_or_vieilli.png"/>
+</div><div class="bubble-options spaced-section">
+<div class="bubble-choice fade-in">
+<img alt="Bulle Astrale" src="astrale_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Astrale</p>
+</div>
+<div class="bubble-choice fade-in">
+<img alt="Bulle Céleste" src="celeste_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Céleste</p>
+</div>
+<div class="bubble-choice fade-in">
+<img alt="Bulle Nova" src="nova_detoure.png"/>
+<p class="bubble-name bubble-name-sacred">Nova</p>
+</div>
+<div>
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": { "enable": true, "value_area": 800 }
+      },
+      "color": { "value": "#FFD700" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": true
+      },
+      "size": {
+        "value": 2,
+        "random": true
+      },
+      "line_linked": {
+        "enable": false
+      },
+      "move": {
+        "enable": true,
+        "speed": 0.5,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false
+      }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": { "enable": false },
+        "onclick": { "enable": false },
+        "resize": true
+      }
+    },
+    "retina_detect": true
+  });
+});
+</script>
 <div class="popup-overlay" id="popup">
 <div class="popup-container" id="popup-container">
 <img alt="Bulle" class="popup-image" id="popup-img" src=""/>
@@ -1901,9 +2355,7 @@ function openOfferPopup(title) {
 <li style="margin: 20px 0;"><a class="go-to-reservation" href="#" style="text-decoration: none; color: inherit;">Acheter ma bulle</a></li>
 <li style="margin: 20px 0;"><a href="roadmap.html" style="text-decoration: none; color: inherit;">Roadmap</a></li>
 <li style="margin: 20px 0;"><a href="histoire.html" style="text-decoration: none; color: inherit;">Histoire de Bubbles Legacy</a></li>
-<li style="margin: 20px 0;"><a href="#" style="text-decoration: none; color: inherit;" 
-onclick="document.getElementById('popup-menu').classList.remove('active'); document.getElementById('popup-menu').style.display = 'none'; window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
->Retour à l'accueil</a></li>
+<li style="margin: 20px 0;"><a href="#" onclick="document.getElementById('popup-menu').classList.remove('active'); document.getElementById('popup-menu').style.display = 'none'; window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="text-decoration: none; color: inherit;">Retour à l'accueil</a></li>
 <li style="margin: 20px 0;">Whitepaper</li>
 <li style="margin: 20px 0;"><a href="#grille" style="text-decoration: none; color: inherit;">Voir la grille</a></li>
 </ul>
@@ -1958,7 +2410,7 @@ document.getElementById('popup').addEventListener('click', function(e) {
 <div class="bubble-availability-note spaced-small">
 <p class="bubble-gradient-text" style="font-family: 'IM Fell English SC', serif; color: #FFD700; font-size: 1.2rem; line-height: 1.6;">
     Disponible seulement pour entreprise et créateur de contenu
-  </p><div class="video-demo-wrapper" style="margin-top: 1.2rem; text-align: center;"><video autoplay="True" loop="True" muted="True" playsinline="True" style="max-width: 480px; width: 90%; border-radius: 16px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);"><source src="video_demo_embed.mp4" type="video/mp4"/></video></div>
+  </p><div class="video-demo-wrapper" style="margin-top: 1.2rem; text-align: center;"><video autoplay="True" loop="True" muted="True" playsinline="True" style="max-width: 480px; width: 90%; border-radius: 16px; "><source src="video_demo_embed.mp4" type="video/mp4"/></video></div>
 </div>
 <div class="bubble-info-button spaced-section">
 <img alt="En savoir plus" src="bouton_savoir_plus.png" style="width: 200px; height: auto; cursor: pointer;"/>
@@ -2036,7 +2488,7 @@ C’est un hub digital unique où créateurs et entreprises coexistent, interagi
       Dans ce monde où chacun veut <em>être vu ou vendre</em>, Bubbles Legacy devient un <strong>lieu d’interaction cosmique</strong>.<br/>
       Un espace où l’attention génère de la valeur.<br/>
      Un outil de mise en relation, de branding, et de visibilité sur le long terme..<br/></p>
-<a href="histoire.html" style="display:inline-block; margin-top: 0.1rem; padding: 10px 20px; background: #FFD700; color: black; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.95rem;background: linear-gradient(to right, white, gold, red);color: rgb(0, 0, 0);border: none;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);">Voir l’histoire complète</a>
+<a href="histoire.html" style="display:inline-block; margin-top: 0.1rem; padding: 10px 20px; background: #FFD700; color: black; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.95rem;background: linear-gradient(to right, white, gold, red);color: rgb(0, 0, 0);border: none;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);">Voir l’histoire complète</a>
 </div>
 </div>
 <script>
@@ -2080,16 +2532,25 @@ document.querySelector('.bubble-info-button img').addEventListener('click', () =
 </div>
 </div>
 <!-- Step 3: Form -->
-<div id="step-form" style="display:none;">
-<form id="final-form" style="display: flex; flex-direction: column; gap: 15px;">
-<h3>Informations</h3>
-<input id="nom" name="nom" placeholder="Nom ou pseudo" required="" type="text"/>
-<input id="lien" name="lien" placeholder="Site ou réseaux sociaux" required="" type="url"/>
-<textarea name="description" placeholder="Décris ton projet ou entreprise" required="" rows="4"></textarea>
-<button style="padding: 10px; background: #fff; color: #000; border: none; cursor: pointer;" type="submit">
-          Envoyer ma demande
-        </button><input name="logo" placeholder="Lien vers ton logo (.png)" required="" type="url"/>
+<div id="step-form" style="display: flex; justify-content: center; align-items: center; position: fixed; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 1000;; display: flex; justify-content: center; align-items: center; position: fixed; inset: 0; z-index: 1000; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px);"><div style="background: rgba(20, 20, 30, 0.95); border-radius: 16px; padding: 2rem;  max-width: 420px; width: 90%; text-align: center; animation: fadeIn 0.8s ease-in-out; margin: auto; align-self: center; justify-self: center; "><div class="form-container">
+<h2>Informations</h2>
+<form id="final-form">
+<input id="name" placeholder="Nom ou pseudo" required="" type="text"/>
+<input id="lien" placeholder="Site ou réseaux sociaux" type="text"/>
+<textarea id="description" placeholder="Décris ton projet ou entreprise"></textarea>
+<input id="email" placeholder="Ton adresse mail (obligatoire)" required="" type="email"/>
+<input id="logo" placeholder="Lien vers ton logo (.png)" type="text"/>
+<input id="bulle" placeholder="Nom de ta bulle" type="text"/>
+<button id="submit-button" type="button">Envoyer ma demande</button>
 </form>
+</div></div></div><div class="step" id="step-thanks" style="display:none;">
+<div class="thanks-popup-overlay">
+<div class="thanks-popup-content">
+<h2>Merci pour votre demande !</h2>
+<p>Nous reviendrons vers vous très vite.</p>
+<button class="btn-return" onclick="window.location.href='index.html'">Retour à l’accueil</button>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2161,7 +2622,6 @@ document.getElementById("final-form").addEventListener("submit", function (e) {
   });
 });
 </script>
-
 <script>
 document.querySelectorAll('.go-to-reservation').forEach(btn => {
   btn.addEventListener('click', (e) => {
@@ -2182,5 +2642,73 @@ document.querySelectorAll('.go-to-reservation').forEach(btn => {
 });
 </script>
 <div id="grille" style="height: 300px; background: transparent;"></div>
-</body>
+<script>
+    document.querySelector("#submit-button").addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      const nom = document.querySelector("#name").value;
+      const lien = document.querySelector("#lien").value;
+      const description = document.querySelector("#description").value;
+      const email = document.querySelector("#email").value;
+      const logo = document.querySelector("#logo").value;
+      const bulle = document.querySelector("#bulle")?.value || "non spécifié";
+
+      const formData = new FormData();
+      formData.append("nom", nom);
+      formData.append("lien", lien);
+      formData.append("description", description);
+      formData.append("email", email);
+      formData.append("logo", logo);
+      formData.append("bulle", bulle);
+
+      fetch("https://script.google.com/macros/s/AKfycbyOdYOhuw7ZqSeWULCj_2UnxWQ0Fv0PqeIg6ovVDx50VrEO1OvXH2mJRFvHLihnghrzkw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
+
+      document.getElementById("final-form").reset();
+      document.getElementById("thank-you-popup").style.display = "block";
+    });
+  </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const btnPayer = document.getElementById("btnPayer");
+  const popupFinal = document.getElementById("finalPopup");
+
+  if (btnPayer && popupFinal) {
+    btnPayer.addEventListener("click", function () {
+      popupFinal.style.display = "flex";
+    });
+  }
+});
+</script>
+<!-- Ajout des boutons sociaux en bas de page -->
+<p class="join-us-text">Rejoins-nous</p><div class="footer-buttons" style="margin-top:40px; margin-bottom:60px; display:flex; justify-content:center; gap:25px;">
+<div class="btn-wrapper"><a href="https://x.com/BubbleLegacyCo" rel="noopener noreferrer" target="_blank">
+<img alt="X Bubble Legacy" class="footer-btn-img" src="bouton_x.png" style="width:50px; height:auto; cursor:pointer; transition: transform 0.3s ease;"/>
+</a></div>
+<div class="btn-wrapper"><a href="https://discord.gg/C2j7ce2gY7" rel="noopener noreferrer" target="_blank">
+<img alt="Discord Bubble Legacy" class="footer-btn-img" src="bouton_discord.png" style="width:50px; height:auto; cursor:pointer; transition: transform 0.3s ease;"/>
+</a></div>
+<div class="btn-wrapper"><a href="https://t.me/+p1n_5mcWUgRmYzI0" rel="noopener noreferrer" target="_blank">
+<img alt="Telegram Bubble Legacy" class="footer-btn-img" src="bouton_telegram.png" style="width:50px; height:auto; cursor:pointer; transition: transform 0.3s ease;"/>
+</a></div>
+</div><div class="footer-legal">
+<p>© 2025 Bubbles Legacy. Tous droits réservés. 
+<a href="#" rel="noopener noreferrer" target="_blank">Politique de confidentialité</a> | 
+<a href="#" rel="noopener noreferrer" target="_blank">Conditions d’utilisation</a></p>
+<p class="footer-quote">Construisons ensemble le futur du Web3.</p>
+</div>
+<script>
+function sendRequest() {
+  // Ici tu peux ajouter la gestion réelle d'envoi (AJAX, validation, etc)
+  document.getElementById('step-form').style.display = 'none';
+  document.getElementById('step-thanks').style.display = 'block';
+}
+
+
+</script><script>
+document.getElementById('submit-button').addEventListener('click', sendRequest);
+</script></body>
 </html>
