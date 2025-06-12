@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bubbles Legacy - Popups 3 Bulles</title>
+  <title>Bubbles Legacy - Popups 3 Bulles + Crxw & Obor</title>
   
 <style>
 .popup-content ul li {
@@ -66,128 +66,157 @@
   box-shadow: 0 0 8px #FFD700;
   z-index: 10001;
 }
-</style>
-<style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-      background-color: black;
-    }
-    canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 10;
-      justify-content: center;
-      align-items: center;
-    }
-    .popup-image {
-      position: relative;
-      max-width: 80vw;
-      max-height: 80vh;
-      text-align: center;
-    }
-    .popup-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-    }
-    .popup-caption {
-      position: absolute;
-      bottom: 2%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      padding: 15px 25px;
-      border-radius: 15px;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-    }
-    .popup-caption button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      z-index: 20;
-    }
-    .headbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      background: transparent;
-      z-index: 100;
-      padding: 0 20px;
-    }
-    .headbar img {
-      margin-left: 0px;
-      height: 40px;
-    }
-    body {
-      padding-top: 60px;
-    }
-    .menu-button-container {
-      position: absolute;
-      top: 10px;
-      right: 60px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-    }
-    .menu-button {
-      height: 50px;
-      cursor: pointer;
-    }
-    .side-menu {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 200;
-      top: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
-    }
-    .side-menu .closebtn {
-      position: absolute;
-      top: 20px;
-      right: 40px;
-      font-size: 36px;
-      color: white;
-      cursor: pointer;
-    }
-  
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: black;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-image {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+  text-align: center;
+}
+
+/* === Correction : taille max popup Crxw & Obor === */
+#popupCrxw .popup-image img,
+#popupObor .popup-image img {
+  max-width: 400px;
+  width: 90vw;
+  height: auto;
+}
+
+.popup-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* Nouveau style bouton dégradé blanc → or → rouge, texte noir */
+.popup-caption button {
+  background: linear-gradient(90deg, white, gold, red);
+  color: black !important;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.popup-caption button:hover {
+  filter: brightness(1.1);
+}
+
+.popup-caption {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 15px 25px;
+  border-radius: 15px;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 20;
+}
+
+.headbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  z-index: 100;
+  padding: 0 20px;
+}
+
+.headbar img {
+  margin-left: 0px;
+  height: 40px;
+}
+
+body {
+  padding-top: 60px;
+}
+
+.menu-button-container {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  height: 50px;
+  cursor: pointer;
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.side-menu .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+}
+
 .popup-menu {
   display: none;
   position: fixed;
@@ -203,9 +232,11 @@
   justify-content: flex-start;
   padding-top: 80px;
 }
+
 .popup-content {
   text-align: center;
 }
+
 .closebtn {
   position: absolute;
   top: 20px;
@@ -226,6 +257,7 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .popup-content ul li:hover {
   text-decoration: underline;
   text-underline-offset: 6px;
@@ -242,12 +274,15 @@
     </div>
   </div>
 
+  <!-- Popups existants -->
   <div class="popup-overlay" id="popupRick">
     <div class="close-btn" onclick="document.getElementById('popupRick').style.display='none'">&times;</div>
     <div class="popup-image">
       <img src="rickrack_pp.png" alt="Riiiick Raack" />
       <div class="popup-caption">
-        <a href="https://x.com/RiickRaack" target="_blank" style="text-decoration: none;"><button>Visiter</button></a>
+        <a href="https://www.youtube.com/watch?v=1hb-DcCCV80" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <button>Visiter</button>
+        </a>
       </div>
     </div>
   </div>
@@ -257,7 +292,9 @@
     <div class="popup-image">
       <img src="csv_pp.png" alt="Anonyme CSV" />
       <div class="popup-caption">
-        <button>Visiter</button>
+        <a href="https://www.youtube.com/watch?v=XwA8OB6l5E4" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <button>Visiter</button>
+        </a>
       </div>
     </div>
   </div>
@@ -267,12 +304,38 @@
     <div class="popup-image">
       <img src="bubble_legacy_pp.png" alt="Celeste" />
       <div class="popup-caption">
-        <button>Visiter</button>
+        <a href="https://x.com/BubbleLegacyCo" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <button>Visiter</button>
+        </a>
       </div>
     </div>
   </div>
 
-  
+  <!-- Popups nouvelles bulles -->
+
+  <div class="popup-overlay" id="popupCrxw">
+    <div class="close-btn" onclick="document.getElementById('popupCrxw').style.display='none'">&times;</div>
+    <div class="popup-image">
+      <img src="popup_crxw.png" alt="Crxw" />
+      <div class="popup-caption">
+        <a href="https://linktr.ee/crxwobor?utm_source=linktree_profile_share&ltsid=0d286de3-58bb-4d1e-abc2-113a43145207" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <button>Visiter</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="popupObor">
+    <div class="close-btn" onclick="document.getElementById('popupObor').style.display='none'">&times;</div>
+    <div class="popup-image">
+      <img src="popup_obor.png" alt="Obor Gang" />
+      <div class="popup-caption">
+        <a href="https://www.instagram.com/obor.music?igsh=MTkyaWF0Y2Iwcm5icA==" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <button>Visiter</button>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.2.4/dist/pixi.min.js"></script>
   <script>
@@ -282,40 +345,38 @@
     const videoContainer = new PIXI.Container();
     app.stage.addChild(videoContainer);
 
-    
-const videoTexture = PIXI.Texture.from('galactic_background.jpg.webm');
-const videoSprite = new PIXI.Sprite(videoTexture);
+    const videoTexture = PIXI.Texture.from('galactic_background.jpg.webm');
+    const videoSprite = new PIXI.Sprite(videoTexture);
 
-const videoElement = videoTexture.baseTexture.resource.source;
-videoElement.loop = true;
-videoElement.muted = true;
-videoElement.play();
+    const videoElement = videoTexture.baseTexture.resource.source;
+    videoElement.loop = true;
+    videoElement.muted = true;
+    videoElement.play();
 
-videoSprite.anchor.set(0.5);
-videoSprite.x = window.innerWidth / 2;
-videoSprite.y = window.innerHeight / 2;
+    videoSprite.anchor.set(0.5);
+    videoSprite.x = window.innerWidth / 2;
+    videoSprite.y = window.innerHeight / 2;
 
-function resizeVideo() {
-  const windowRatio = window.innerWidth / window.innerHeight;
-  const videoRatio = videoElement.videoWidth / videoElement.videoHeight;
+    function resizeVideo() {
+      const windowRatio = window.innerWidth / window.innerHeight;
+      const videoRatio = videoElement.videoWidth / videoElement.videoHeight;
 
-  if (windowRatio > videoRatio) {
-    videoSprite.width = window.innerWidth;
-    videoSprite.height = window.innerWidth / videoRatio;
-  } else {
-    videoSprite.height = window.innerHeight;
-    videoSprite.width = window.innerHeight * videoRatio;
-  }
+      if (windowRatio > videoRatio) {
+        videoSprite.width = window.innerWidth;
+        videoSprite.height = window.innerWidth / videoRatio;
+      } else {
+        videoSprite.height = window.innerHeight;
+        videoSprite.width = window.innerHeight * videoRatio;
+      }
 
-  videoSprite.x = window.innerWidth / 2;
-  videoSprite.y = window.innerHeight / 2;
-}
+      videoSprite.x = window.innerWidth / 2;
+      videoSprite.y = window.innerHeight / 2;
+    }
 
-videoElement.addEventListener('loadedmetadata', resizeVideo);
-window.addEventListener('resize', resizeVideo);
+    videoElement.addEventListener('loadedmetadata', resizeVideo);
+    window.addEventListener('resize', resizeVideo);
 
-videoContainer.addChild(videoSprite);
-
+    videoContainer.addChild(videoSprite);
 
     const bubblesData = [
       { src: "nova.png", x: 100, y: 100, vx: 0.15, vy: 0.12 },
@@ -323,7 +384,9 @@ videoContainer.addChild(videoSprite);
       { src: "celeste.png", x: 500, y: 150, vx: 0.1, vy: -0.15 },
       { src: "bulle_csv.png", x: 200, y: 300, vx: -0.08, vy: 0.1 },
       { src: "bulle_entreprise_detoure.png", x: 400, y: 250, vx: 0.1, vy: -0.09 },
-      { src: "bulle_influ-detoure.png", x: 600, y: 100, vx: -0.11, vy: 0.07 }
+      { src: "bulle_influ-detoure.png", x: 600, y: 100, vx: -0.11, vy: 0.07 },
+      { src: "bulle_crxw.png", x: 700, y: 300, vx: 0.1, vy: -0.12 },
+      { src: "bulle_obor.png", x: 800, y: 400, vx: -0.12, vy: 0.1 }
     ];
 
     const bubbles = [];
@@ -332,36 +395,50 @@ videoContainer.addChild(videoSprite);
       const texture = PIXI.Texture.from(data.src);
       const sprite = new PIXI.Sprite(texture);
       sprite.anchor.set(0.5);
+
       if (index === 1) {
         sprite.width = 75;
         sprite.height = 75;
       } else if (index === 2 || index === 3) {
         sprite.width = 100;
         sprite.height = 100;
+      } else if (data.src === "bulle_crxw.png" || data.src === "bulle_obor.png") {
+        sprite.width = 100;
+        sprite.height = 100;
       } else {
         sprite.width = 50;
         sprite.height = 50;
       }
+
       sprite.x = data.x;
       sprite.y = data.y;
       sprite.vx = data.vx;
       sprite.vy = data.vy;
       sprite.eventMode = 'static';
+
       if (index === 1) {
         sprite.on('pointerdown', () => {
           document.getElementById('popupRick').style.display = 'flex';
         });
       }
-
       if (index === 2) {
         sprite.on('pointerdown', () => {
           document.getElementById('popupCeleste').style.display = 'flex';
         });
       }
-
       if (index === 3) {
         sprite.on('pointerdown', () => {
           document.getElementById('popupCSV').style.display = 'flex';
+        });
+      }
+      if (data.src === "bulle_crxw.png") {
+        sprite.on('pointerdown', () => {
+          document.getElementById('popupCrxw').style.display = 'flex';
+        });
+      }
+      if (data.src === "bulle_obor.png") {
+        sprite.on('pointerdown', () => {
+          document.getElementById('popupObor').style.display = 'flex';
         });
       }
 
@@ -427,9 +504,6 @@ videoContainer.addChild(videoSprite);
       }
     });
 
-    
-
-    
   </script>
 
 <div id="popupMenu" class="popup-menu">
@@ -447,19 +521,16 @@ videoContainer.addChild(videoSprite);
 
 </div>
 
-
 <script>
 function openPopup(id) {
-  console.log("✅ Popup ouverte : " + id);
   document.getElementById(id).style.display = "flex";
 }
 function closePopup(id) {
-  console.log("❌ Popup fermée : " + id);
   document.getElementById(id).style.display = "none";
 }
 
 // Fermer la popup si clic à l'extérieur du contenu
-['popupRick', 'popupCSV', 'popupCeleste'].forEach(popupId => {
+['popupRick', 'popupCSV', 'popupCeleste', 'popupCrxw', 'popupObor'].forEach(popupId => {
   const popup = document.getElementById(popupId);
   if (popup) {
     popup.addEventListener('click', function(e) {
@@ -471,5 +542,4 @@ function closePopup(id) {
 });
 </script>
 </body>
-
 </html>
