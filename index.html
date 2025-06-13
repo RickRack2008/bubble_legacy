@@ -2271,19 +2271,19 @@ const container = document.getElementById('popup-container');
       img: 'popup_astrale.png',
       name: 'Bulle Astrale',
       desc: 'Pour ceux qui souhaitent marquer leur présence discrètement.',
-      price: '19 €'
+      price: '19 USDC'
     },
     nova: {
       img: 'popup_nova.png',
       name: 'Bulle Nova',
       desc: 'Une bulle en expansion, prête à briller.',
-      price: '49 €'
+      price: '49 USDC'
     },
     celeste: {
       img: 'popup_celeste.png',
       name: 'Bulle Céleste',
       desc: 'Une étoile fixe dans l’univers digital.',
-      price: '99 €'
+      price: '99 USDC'
     }
   };
 
@@ -2511,10 +2511,9 @@ document.querySelector('.bubble-info-button img').addEventListener('click', () =
 <button class="gradient-button" onclick="backToRole()" style="align-self: start; background: none; color: #FFD700; border: none; cursor: pointer;">← Revenir</button>
 <h3>Choisis ta bulle</h3>
 <select id="bubble-type" onchange="updateAmountDisplay()">
-<option value="astrale">Astrale (19 €)</option>
-<option value="nova">Nova (49 €)</option>
-<option value="celeste">Céleste (99 €)</option>
-<option value="influence">Bulle Influenceur (gratuite)</option>
+<option value="astrale">Astrale (19 USDC)</option>
+<option value="nova">Nova (49 USDC)</option>
+<option value="celeste">Céleste (99 USDC)</option>
 </select>
 <div id="crypto-payment" style="margin-top: 10px; text-align: center;">
 <h3 class="gradient-text" style="margin-bottom: 10px; color: #FFD700;">Paiement en USDC (BNB Smart Chain)</h3>
@@ -2540,7 +2539,7 @@ document.querySelector('.bubble-info-button img').addEventListener('click', () =
 <textarea id="description" placeholder="Décris ton projet ou entreprise"></textarea>
 <input id="email" placeholder="Ton adresse mail (obligatoire)" required="" type="email"/>
 <input id="logo" placeholder="Lien vers ton logo (.png)" type="text"/>
-<input id="bulle" placeholder="Nom de ta bulle" type="text"/>
+<input id="bulle" placeholder="Astrale Célèste ou Nova ?" type="text"/>
 <button id="submit-button" type="button">Envoyer ma demande</button>
 </form>
 </div></div></div><div class="step" id="step-thanks" style="display:none;">
